@@ -7,7 +7,7 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
-#define BUF_SIZE 100
+#define BUF_SIZE 1000
 
 uint64_t
 rdtscp(void) {
@@ -60,10 +60,8 @@ main(int ac , char** av) {
   }
 
   char buf[BUF_SIZE];
-  for (unsigned int i = 0; i < 1000; ++i) {
-    recv(client_fd, buf, sizeof(buf), 0);
-    send(client_fd, &buf, sizeof(buf), 0);
-  }
+  for (unsigned int i = 0; i < 1000000; ++i)
+    send(client_fd, buf, sizeof(buf), 0);
 
   close(client_fd);
   close(fd);
