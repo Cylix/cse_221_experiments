@@ -47,12 +47,16 @@ main(int ac, char** av) {
   }
 
   char buf[BUF_SIZE];
+  unsigned int total = 0;
+  unsigned int iter = 0;
   uint64_t start = rdtscp();
-  for (unsigned int i = 0; i < 1000000; ++i)
-    recv(fd, buf, sizeof(buf), 0);
+  while (total < 100000000) {
+    total += recv(fd, buf, sizeof(buf), 0);
+    ++iter;
+  }
   uint64_t stop = rdtscp();
 
-  std::cout << (stop - start - 34 - 5200000) << std::endl;
+  std::cout << (stop - start - 5 * iter) << std::endl;
   
   close(fd);
 
