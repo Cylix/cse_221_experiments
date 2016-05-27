@@ -57,11 +57,11 @@ main(int ac , char** av) {
       std::cout << "fail accept()" << std::endl;
       return 1;
     }
-
-    //    uint64_t start = rdtscp();
-    //    close(client_fd);
-    //    uint64_t end = rdtscp();
-    //    std::cout << (end - start - 34) << std::endl;
+    sleep(1);
+    uint64_t start = rdtscp();
+    close(client_fd);
+    uint64_t end = rdtscp();
+    std::cout << (end - start - 34) << std::endl;
   }
   
   close(fd);
