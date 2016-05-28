@@ -4,8 +4,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define BUF_SIZE 4096
-#define NB_LOOPS 5
+#define BUF_SIZE (4096 * 32)
+#define NB_LOOPS 3
 
 uint64_t
 rdtscp(void) {
@@ -39,7 +39,7 @@ main(void) {
       lseek(fd, 0, SEEK_SET);
     }
 
-    std::cout << i << "G: " << (total / NB_LOOPS) << std::endl;
+    std::cout << (total / NB_LOOPS) << std::endl;
         
     close(fd);
     ++i;
