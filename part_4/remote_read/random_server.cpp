@@ -10,7 +10,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define BUF_SIZE (4096 * 32)
+#define BUF_SIZE 4096
+#define NB_READS 1000
 
 uint64_t
 rdtscp(void) {
@@ -72,13 +73,12 @@ main(int ac , char** av) {
     return 1;
   }
 
-  //! send size
-  send(client_fd, (char*)&file_size, sizeof(file_size), 0);
-  std::cout << "size sent" << std::endl;
-
   char buf[BUF_SIZE];
-  while (read(file_fd, buf, BUF_SIZE) == BUF_SIZE)
+  for (unsigned int j = 0; j < NB_READS; ++j) {
+    lseek(file_fd, rand() % (size - BUF_SIZE), SEEK_SET);
+    read(file_fd, buf, BUF_SIZE);
     send(client_fd, buf, sizeof(buf), 0);
+  }
   std::cout << "file sent" << std::endl;
   
   close(client_fd);
