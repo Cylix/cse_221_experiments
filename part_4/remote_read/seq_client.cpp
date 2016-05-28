@@ -50,11 +50,13 @@ main(int ac, char** av) {
   unsigned int total = 0;
   unsigned int size;
   recv(fd, (char*)&size, sizeof(size), 0);
+  std::cout << "file size: " << size << std::endl;
 
   unsigned int iter = 0;
   uint64_t start = rdtscp();
   while (total < size) {
     total += recv(fd, buf, sizeof(buf), 0);
+    std::cout << "recv" << std::endl;
     ++iter;
   }
   uint64_t stop = rdtscp();

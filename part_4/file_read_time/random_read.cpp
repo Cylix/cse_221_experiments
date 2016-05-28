@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define BUF_SIZE 4096
+#define BUF_SIZE (4096 * 32)
 #define NB_READS 10000
 
 uint64_t
