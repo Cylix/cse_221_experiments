@@ -8,7 +8,7 @@
 #include <arpa/inet.h>
 
 #define BUF_SIZE 4096
-#define NB_BLOCKS 1000
+#define NB_BLOCKS 10000
 
 uint64_t
 rdtscp(void) {
@@ -53,7 +53,6 @@ main(int ac, char** av) {
   uint64_t start = rdtscp();
   while (total < BUF_SIZE * NB_BLOCKS) {
     total += recv(fd, buf, sizeof(buf), 0);
-    std::cout << "recv" << std::endl;
     ++iter;
   }
   uint64_t stop = rdtscp();

@@ -11,7 +11,7 @@
 #include <fcntl.h>
 
 #define BUF_SIZE 4096
-#define NB_READS 1000
+#define NB_READS 10000
 
 uint64_t
 rdtscp(void) {

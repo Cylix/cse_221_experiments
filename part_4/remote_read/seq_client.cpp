@@ -56,7 +56,6 @@ main(int ac, char** av) {
   uint64_t start = rdtscp();
   while (total < size) {
     total += recv(fd, buf, sizeof(buf), 0);
-    std::cout << "recv" << std::endl;
     ++iter;
   }
   uint64_t stop = rdtscp();
