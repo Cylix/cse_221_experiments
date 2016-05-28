@@ -34,6 +34,7 @@ main(int ac , char** av) {
   int file_fd = open(av[2], O_RDONLY);
   if (file_fd == -1) {
     std::cout << "could not open " << av[2] << std::endl;
+    return -1;
   }
   
   fcntl(file_fd, F_NOCACHE, 1);
